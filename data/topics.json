@@ -83747,7 +83747,7 @@
     "semester": "上",
     "chapter": "一年级上册 第2单元 我们自己",
     "type": "application",
-    "description": "知道感官的重要，学会保护眼睛、耳朵等感官。",
+    "description": "知道感官的重要，学会保护眼睛、耳朵等感官。官方目录无同名独立课，作为单元内概念保留。",
     "mastery_criteria": [
       "能说出生物的主要特征或生命活动",
       "能把特征和生活环境、功能联系起来"
@@ -84557,7 +84557,7 @@
     "semester": "上",
     "chapter": "二年级上册 第2单元 地球家园",
     "type": "procedural",
-    "description": "用符号连续记录天气，从记录中发现天气变化。",
+    "description": "用符号连续记录天气，从记录中发现天气变化。官方目录无同名独立课，作为单元内概念保留。",
     "mastery_criteria": [
       "能描述地球或天体的基本特征和变化",
       "能用模型或观测记录解释简单现象"
@@ -85184,13 +85184,13 @@
   },
   {
     "id": "cns_p066",
-    "name": "天气预报与天气的影响",
+    "name": "天气预报",
     "domain": "地球与宇宙科学",
     "grade": 3,
     "semester": "上",
     "chapter": "三年级上册 第1单元 天气",
     "type": "application",
-    "description": "看懂天气预报符号，知道天气对人和动植物的影响。",
+    "description": "看懂天气预报里的天气符号，会读最高气温、最低气温和温差。",
     "mastery_criteria": [
       "能描述地球或天体的基本特征和变化",
       "能用模型或观测记录解释简单现象"
@@ -85198,6 +85198,33 @@
     "diagnostic_question": {
       "question": "天气预报里，一朵云下面画着雨点的符号表示什么？",
       "answer": "雨"
+    },
+    "external": false,
+    "subject": "science",
+    "standards": [
+      {
+        "id": "css-2022:2.DQ.01",
+        "confidence": "inferred",
+        "note": "教科版该课的常见教学内容。条目是公开转述，不是逐页核对的原文。"
+      }
+    ]
+  },
+  {
+    "id": "cns_p261",
+    "name": "天气的影响",
+    "domain": "地球与宇宙科学",
+    "grade": 3,
+    "semester": "上",
+    "chapter": "三年级上册 第1单元 天气",
+    "type": "application",
+    "description": "知道天气会影响出行和动植物，例如危险天气让出行更不安全，干旱会让农作物缺水。",
+    "mastery_criteria": [
+      "能描述地球或天体的基本特征和变化",
+      "能用模型或观测记录解释简单现象"
+    ],
+    "diagnostic_question": {
+      "question": "下面哪种天气对出行最危险？",
+      "answer": "大雾、暴雨或冰冻"
     },
     "external": false,
     "subject": "science",
@@ -85508,13 +85535,13 @@
   },
   {
     "id": "cns_p079",
-    "name": "比较运动的快慢",
+    "name": "相同距离比快慢",
     "domain": "物质科学",
     "grade": 3,
     "semester": "上",
     "chapter": "三年级上册 第3单元 物体的运动",
     "type": "reasoning",
-    "description": "会用相同距离比时间、相同时间比距离的方法比较快慢。",
+    "description": "在距离相同的情况下，用所用时间比较运动的快慢，用时少的更快。",
     "mastery_criteria": [
       "能说出物体或现象的主要特征",
       "能用观察或实验的结果解释简单现象"
@@ -85535,7 +85562,34 @@
     "mathLinks": [
       {
         "id": "cnm_p063",
-        "reason": "比较快慢要比较所用时间，要用到「经过时间」。"
+        "reason": "相同距离比快慢要比较所用时间，要用到「经过时间」。"
+      }
+    ]
+  },
+  {
+    "id": "cns_p262",
+    "name": "相同时间比快慢",
+    "domain": "物质科学",
+    "grade": 3,
+    "semester": "上",
+    "chapter": "三年级上册 第3单元 物体的运动",
+    "type": "reasoning",
+    "description": "在时间相同的情况下，用通过的距离比较运动的快慢，距离远的更快。",
+    "mastery_criteria": [
+      "能说出物体或现象的主要特征",
+      "能用观察或实验的结果解释简单现象"
+    ],
+    "diagnostic_question": {
+      "question": "都跑 1 分钟，甲跑了 200 米，乙跑了 180 米，谁快？",
+      "answer": "甲"
+    },
+    "external": false,
+    "subject": "science",
+    "standards": [
+      {
+        "id": "css-2022:2.WZ.03",
+        "confidence": "inferred",
+        "note": "教科版该课的常见教学内容。条目是公开转述，不是逐页核对的原文。"
       }
     ]
   },
@@ -85568,13 +85622,13 @@
   },
   {
     "id": "cns_p081",
-    "name": "设计和测试「过山车」",
+    "name": "设计和制作“过山车”",
     "domain": "物质科学",
     "grade": 3,
     "semester": "上",
     "chapter": "三年级上册 第3单元 物体的运动",
     "type": "modeling",
-    "description": "用纸槽等材料设计、制作并测试过山车轨道。",
+    "description": "设计并制作纸槽等材料的过山车轨道，让小球从足够高的起点跑完全程。",
     "mastery_criteria": [
       "能说出物体或现象的主要特征",
       "能用观察或实验的结果解释简单现象"
@@ -85582,6 +85636,33 @@
     "diagnostic_question": {
       "question": "纸过山车里的小钢珠，开始时要放在哪里才能跑完全程？",
       "answer": "轨道最高处"
+    },
+    "external": false,
+    "subject": "science",
+    "standards": [
+      {
+        "id": "css-2022:2.WZ.03",
+        "confidence": "inferred",
+        "note": "教科版该课的常见教学内容。条目是公开转述，不是逐页核对的原文。"
+      }
+    ]
+  },
+  {
+    "id": "cns_p263",
+    "name": "测试“过山车”",
+    "domain": "物质科学",
+    "grade": 3,
+    "semester": "上",
+    "chapter": "三年级上册 第3单元 物体的运动",
+    "type": "modeling",
+    "description": "测试做好的过山车：相同条件下多测几次，并根据小球停下或飞出的情况改进轨道。",
+    "mastery_criteria": [
+      "能说出物体或现象的主要特征",
+      "能用观察或实验的结果解释简单现象"
+    ],
+    "diagnostic_question": {
+      "question": "测试过山车时，为什么要每次从同一位置放小球、测几次？",
+      "answer": "让测试结果更可靠"
     },
     "external": false,
     "subject": "science",
@@ -85708,14 +85789,14 @@
     ]
   },
   {
-    "id": "cns_p086",
-    "name": "制作和使用指南针",
+    "id": "cns_p264",
+    "name": "制作小磁针",
     "domain": "物质科学",
     "grade": 3,
     "semester": "下",
     "chapter": "三年级下册 第1单元 辨别方向",
-    "type": "modeling",
-    "description": "用磁铁磁化钢针做小磁针，设计、制作指南针并用它辨认方向。",
+    "type": "procedural",
+    "description": "用磁铁沿同一方向摩擦钢针，使钢针有磁性，并能自由转动来指示方向。",
     "mastery_criteria": [
       "能说出物体或现象的主要特征",
       "能用观察或实验的结果解释简单现象"
@@ -85723,6 +85804,87 @@
     "diagnostic_question": {
       "question": "用磁铁的一端沿同一方向摩擦钢针多次，钢针会怎样？",
       "answer": "被磁化，有了磁性"
+    },
+    "external": false,
+    "subject": "science",
+    "standards": [
+      {
+        "id": "css-2022:2.WZ.03",
+        "confidence": "inferred",
+        "note": "教科版该课的常见教学内容。条目是公开转述，不是逐页核对的原文。"
+      }
+    ]
+  },
+  {
+    "id": "cns_p265",
+    "name": "设计指南针",
+    "domain": "物质科学",
+    "grade": 3,
+    "semester": "下",
+    "chapter": "三年级下册 第1单元 辨别方向",
+    "type": "modeling",
+    "description": "设计一只能指示南北的指南针：磁针要能自由转动，盘上要标出方向。",
+    "mastery_criteria": [
+      "能说出物体或现象的主要特征",
+      "能用观察或实验的结果解释简单现象"
+    ],
+    "diagnostic_question": {
+      "question": "设计指南针，要解决的问题是什么？",
+      "answer": "怎样做出能指示南北方向的工具"
+    },
+    "external": false,
+    "subject": "science",
+    "standards": [
+      {
+        "id": "css-2022:2.WZ.03",
+        "confidence": "inferred",
+        "note": "教科版该课的常见教学内容。条目是公开转述，不是逐页核对的原文。"
+      }
+    ]
+  },
+  {
+    "id": "cns_p086",
+    "name": "制作指南针",
+    "domain": "物质科学",
+    "grade": 3,
+    "semester": "下",
+    "chapter": "三年级下册 第1单元 辨别方向",
+    "type": "modeling",
+    "description": "把有磁性的磁针装进指南针，让它能自由转动，并配上标有方向的底盘。",
+    "mastery_criteria": [
+      "能说出物体或现象的主要特征",
+      "能用观察或实验的结果解释简单现象"
+    ],
+    "diagnostic_question": {
+      "question": "制作指南针时，用来指示方向的磁针要怎样安装？",
+      "answer": "让它能水平自由转动"
+    },
+    "external": false,
+    "subject": "science",
+    "standards": [
+      {
+        "id": "css-2022:2.WZ.03",
+        "confidence": "inferred",
+        "note": "教科版该课的常见教学内容。条目是公开转述，不是逐页核对的原文。"
+      }
+    ]
+  },
+  {
+    "id": "cns_p266",
+    "name": "用指南针“寻宝”",
+    "domain": "物质科学",
+    "grade": 3,
+    "semester": "下",
+    "chapter": "三年级下册 第1单元 辨别方向",
+    "type": "application",
+    "description": "放平指南针，让磁针对准北方后再找指定方向；使用时避开铁制品和磁铁。",
+    "mastery_criteria": [
+      "能说出物体或现象的主要特征",
+      "能用观察或实验的结果解释简单现象"
+    ],
+    "diagnostic_question": {
+      "question": "用指南针辨认方向时，指南针不能靠近什么？",
+      "answer": "铁制品或磁铁"
     },
     "external": false,
     "subject": "science",
@@ -85790,13 +85952,13 @@
   },
   {
     "id": "cns_p089",
-    "name": "蚕的一生",
+    "name": "迎接蚕宝宝的到来",
     "domain": "生命科学",
     "grade": 3,
     "semester": "下",
     "chapter": "三年级下册 第2单元 动物的一生",
     "type": "conceptual",
-    "description": "饲养蚕，知道蚕要经历卵、幼虫、蛹、成虫四个阶段。",
+    "description": "知道蚕宝宝从蚕卵里孵出，并开始用桑叶饲养。",
     "mastery_criteria": [
       "能说出生物的主要特征或生命活动",
       "能把特征和生活环境、功能联系起来"
@@ -85817,7 +85979,7 @@
   },
   {
     "id": "cns_p090",
-    "name": "幼蚕的生长",
+    "name": "幼蚕在生长",
     "domain": "生命科学",
     "grade": 3,
     "semester": "下",
@@ -85843,14 +86005,41 @@
     ]
   },
   {
-    "id": "cns_p091",
-    "name": "蚕蛾与昆虫的一生",
+    "id": "cns_p267",
+    "name": "蚕变了新模样",
     "domain": "生命科学",
     "grade": 3,
     "semester": "下",
     "chapter": "三年级下册 第2单元 动物的一生",
     "type": "conceptual",
-    "description": "知道蚕蛾交配产卵，认识完全变态和不完全变态的昆虫。",
+    "description": "知道幼蚕吐丝结茧，并在茧里变成蛹。",
+    "mastery_criteria": [
+      "能说出生物的主要特征或生命活动",
+      "能把特征和生活环境、功能联系起来"
+    ],
+    "diagnostic_question": {
+      "question": "幼蚕长大以后，会吐丝做成什么？",
+      "answer": "茧"
+    },
+    "external": false,
+    "subject": "science",
+    "standards": [
+      {
+        "id": "css-2022:2.SM.02",
+        "confidence": "inferred",
+        "note": "教科版该课的常见教学内容。条目是公开转述，不是逐页核对的原文。"
+      }
+    ]
+  },
+  {
+    "id": "cns_p268",
+    "name": "茧中钻出了蚕蛾",
+    "domain": "生命科学",
+    "grade": 3,
+    "semester": "下",
+    "chapter": "三年级下册 第2单元 动物的一生",
+    "type": "conceptual",
+    "description": "知道茧里的蛹变成蚕蛾后从茧中钻出，蚕蛾有翅和足。",
     "mastery_criteria": [
       "能说出生物的主要特征或生命活动",
       "能把特征和生活环境、功能联系起来"
@@ -85858,6 +86047,33 @@
     "diagnostic_question": {
       "question": "从茧里钻出来的是什么？",
       "answer": "蚕蛾"
+    },
+    "external": false,
+    "subject": "science",
+    "standards": [
+      {
+        "id": "css-2022:2.SM.02",
+        "confidence": "inferred",
+        "note": "教科版该课的常见教学内容。条目是公开转述，不是逐页核对的原文。"
+      }
+    ]
+  },
+  {
+    "id": "cns_p091",
+    "name": "昆虫的一生",
+    "domain": "生命科学",
+    "grade": 3,
+    "semester": "下",
+    "chapter": "三年级下册 第2单元 动物的一生",
+    "type": "conceptual",
+    "description": "认识昆虫的完全变态和不完全变态，知道有的昆虫一生有蛹期，有的没有。",
+    "mastery_criteria": [
+      "能说出生物的主要特征或生命活动",
+      "能把特征和生活环境、功能联系起来"
+    ],
+    "diagnostic_question": {
+      "question": "昆虫一生经过卵、幼虫、蛹、成虫四个阶段，这种发育叫什么？",
+      "answer": "完全变态"
     },
     "external": false,
     "subject": "science",
@@ -85952,13 +86168,13 @@
   },
   {
     "id": "cns_p095",
-    "name": "地球的卫星——月球",
+    "name": "地球的卫星",
     "domain": "地球与宇宙科学",
     "grade": 3,
     "semester": "下",
     "chapter": "三年级下册 第3单元 只有一个地球",
     "type": "conceptual",
-    "description": "知道月球是地球的卫星，月球表面有环形山，没有空气和液态水。",
+    "description": "知道月球是地球的卫星，绕地球转动，几乎没有空气，表面有环形山。",
     "mastery_criteria": [
       "能描述地球或天体的基本特征和变化",
       "能用模型或观测记录解释简单现象"
@@ -85966,6 +86182,33 @@
     "diagnostic_question": {
       "question": "月球是地球的什么？",
       "answer": "卫星"
+    },
+    "external": false,
+    "subject": "science",
+    "standards": [
+      {
+        "id": "css-2022:2.DQ.02",
+        "confidence": "inferred",
+        "note": "教科版该课的常见教学内容。条目是公开转述，不是逐页核对的原文。"
+      }
+    ]
+  },
+  {
+    "id": "cns_p269",
+    "name": "我们来造“环形山”",
+    "domain": "地球与宇宙科学",
+    "grade": 3,
+    "semester": "下",
+    "chapter": "三年级下册 第3单元 只有一个地球",
+    "type": "modeling",
+    "description": "用面粉盘和小石子模拟撞击，理解月球上的环形山可以由撞击形成。",
+    "mastery_criteria": [
+      "能描述地球或天体的基本特征和变化",
+      "能用模型或观测记录解释简单现象"
+    ],
+    "diagnostic_question": {
+      "question": "用小石子从高处丢进面粉盘里，模拟的是什么？",
+      "answer": "陨石撞击形成环形山"
     },
     "external": false,
     "subject": "science",
@@ -93839,5 +94082,1247 @@
     "lesson": "实现伟大梦想",
     "frames": "民族复兴梦；我们都是追梦人",
     "root_reason": "判断中国梦的本质以及追梦要落实为行动，可以凭题面单独成立，不必先掌握两步走的年份或统一方针。"
+  },
+  {
+    "id": "cnk_h001",
+    "name": "绪言",
+    "domain": "科学探究与化学实验",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 绪言",
+    "type": "conceptual",
+    "description": "化学在原子、分子层次上研究物质的组成、结构、性质、转化和应用。高中化学从这里接着往下学。",
+    "mastery_criteria": [
+      "能说出化学研究的对象和层次",
+      "能把生成新物质的变化和只改变位置、状态的变化区分开"
+    ],
+    "diagnostic_question": {
+      "question": "化学主要研究的是哪一类问题？",
+      "answer": "物质的组成、结构、性质、转化及其应用"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.EX.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h002",
+    "name": "物质的分类及转化",
+    "domain": "物质的组成与结构",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第一章 物质及其变化 1.1",
+    "type": "conceptual",
+    "description": "按组成把物质分成混合物与纯净物、单质与化合物、氧化物，并区分物理变化和化学变化。",
+    "mastery_criteria": [
+      "能按组成对常见物质分类",
+      "能判断一个变化有没有新物质生成"
+    ],
+    "diagnostic_question": {
+      "question": "下列物质属于纯净物的是？",
+      "answer": "蒸馏水"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.ST.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h003",
+    "name": "离子反应",
+    "domain": "物质的化学变化",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第一章 物质及其变化 1.2",
+    "type": "procedural",
+    "description": "电解质在水溶液中电离出离子。离子方程式表示同一类型离子反应的实质。",
+    "mastery_criteria": [
+      "能判断常见物质是不是电解质",
+      "能判断简单离子方程式是否符合客观事实和守恒"
+    ],
+    "diagnostic_question": {
+      "question": "下列物质属于电解质的是？",
+      "answer": "氯化钠"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.ST.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h004",
+    "name": "氧化还原反应",
+    "domain": "物质的化学变化",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第一章 物质及其变化 1.3",
+    "type": "reasoning",
+    "description": "氧化还原反应的特征是有元素化合价变化。化合价降低的物质是氧化剂，化合价升高的物质是还原剂。",
+    "mastery_criteria": [
+      "能用化合价变化判断氧化还原反应",
+      "能指出氧化剂和还原剂"
+    ],
+    "diagnostic_question": {
+      "question": "氧化还原反应最明显的特征是？",
+      "answer": "反应前后有元素的化合价发生变化"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.ST.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h005",
+    "name": "整理与提升",
+    "domain": "物质的化学变化",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第一章 物质及其变化 整理与提升",
+    "type": "reasoning",
+    "description": "综合第一章：物质分类与转化、离子反应、氧化还原反应。不提前使用钠、氯、物质的量或元素周期律。",
+    "mastery_criteria": [
+      "能把分类、离子反应和氧化还原放到一起判断",
+      "能指出哪一类反应有化合价变化"
+    ],
+    "diagnostic_question": {
+      "question": "下列变化既是化学变化，又是氧化还原反应的是？",
+      "answer": "碳在氧气中燃烧生成二氧化碳"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.ST.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h006",
+    "name": "钠及其化合物",
+    "domain": "物质的性质与应用",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第二章 海水中的重要元素——钠和氯 2.1",
+    "type": "conceptual",
+    "description": "钠是活泼金属。钠与氧气、与水反应，碳酸钠和碳酸氢钠是两种常见的钠的化合物。",
+    "mastery_criteria": [
+      "能说出钠与氧气、与水反应的主要现象和产物",
+      "能用性质区分碳酸钠和碳酸氢钠"
+    ],
+    "diagnostic_question": {
+      "question": "钠在空气中燃烧，生成的淡黄色固体主要是？",
+      "answer": "过氧化钠"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.IN.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h007",
+    "name": "氯及其化合物",
+    "domain": "物质的性质与应用",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第二章 海水中的重要元素——钠和氯 2.2",
+    "type": "conceptual",
+    "description": "氯气是黄绿色、有刺激性气味的气体。氯水的漂白与次氯酸有关，氯气与碱反应可得到次氯酸盐。",
+    "mastery_criteria": [
+      "能说出氯气和次氯酸的主要性质",
+      "能说明氯水漂白与久置失效的原因"
+    ],
+    "diagnostic_question": {
+      "question": "氯气通常是怎样的气体？",
+      "answer": "黄绿色、有刺激性气味"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.IN.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.IN.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h008",
+    "name": "物质的量",
+    "domain": "物质的组成与结构",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第二章 海水中的重要元素——钠和氯 2.3",
+    "type": "procedural",
+    "description": "物质的量把宏观质量、微粒数目和溶液组成联系起来。n＝m/M，溶液中 c＝n/V。",
+    "mastery_criteria": [
+      "能说出物质的量的符号和单位",
+      "能用整数相对原子质量完成 n＝m/M 或 c＝n/V 的简单计算"
+    ],
+    "diagnostic_question": {
+      "question": "物质的量的符号和常用单位，正确的是？",
+      "answer": "符号是 n，单位是摩尔"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.ST.04",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h009",
+    "name": "整理与提升",
+    "domain": "物质的性质与应用",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第二章 海水中的重要元素——钠和氯 整理与提升",
+    "type": "reasoning",
+    "description": "综合第二章：钠及其化合物、氯及其化合物、物质的量。不提前使用铁的价态或元素周期律。",
+    "mastery_criteria": [
+      "能把钠、氯的典型性质和物质的量放在一起判断",
+      "能完成与本章有关的简单物质的量计算"
+    ],
+    "diagnostic_question": {
+      "question": "下列关于钠和氯的说法，正确的是？",
+      "answer": "钠与水反应生成氢氧化钠和氢气，氯水的漂白主要靠次氯酸"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.IN.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.04",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h010",
+    "name": "实验活动1 配制一定物质的量浓度的溶液",
+    "domain": "科学探究与化学实验",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第二章 海水中的重要元素——钠和氯 实验活动1",
+    "type": "procedural",
+    "description": "实验活动 1 要配出指定体积、指定物质的量浓度的溶液。固体先在烧杯中溶解，再转入容量瓶定容。",
+    "mastery_criteria": [
+      "能说出这个实验的目的和容量瓶的作用",
+      "能判断定容时俯视或仰视对浓度的影响"
+    ],
+    "diagnostic_question": {
+      "question": "实验活动「配制一定物质的量浓度的溶液」主要要完成的是？",
+      "answer": "配出体积和物质的量浓度都符合要求的溶液"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.EX.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.04",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h011",
+    "name": "铁及其化合物",
+    "domain": "物质的性质与应用",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第三章 铁 金属材料 3.1",
+    "type": "conceptual",
+    "description": "铁是常见金属。铁能置换活动性比它弱的金属，铁的化合物里要区分 +2 价和 +3 价。",
+    "mastery_criteria": [
+      "能说出铁与铜盐溶液反应的产物",
+      "能用硫氰化钾检验三价铁"
+    ],
+    "diagnostic_question": {
+      "question": "把铁钉放入硫酸铜溶液，能观察到的主要变化是？",
+      "answer": "铁钉表面出现红色固体，溶液由蓝变浅"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.IN.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.IN.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h012",
+    "name": "金属材料",
+    "domain": "物质的性质与应用",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第三章 铁 金属材料 3.2",
+    "type": "application",
+    "description": "金属材料包括纯金属和合金。合金的硬度、熔点等性能往往与成分金属不同。生铁和钢都是铁的合金。",
+    "mastery_criteria": [
+      "能说出合金与纯金属的差别",
+      "能举出铁的合金在生活中的一类用途"
+    ],
+    "diagnostic_question": {
+      "question": "合金是？",
+      "answer": "一种金属与其他金属或非金属熔合而成的具有金属特性的物质"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.IN.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h013",
+    "name": "整理与提升",
+    "domain": "物质的性质与应用",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第三章 铁 金属材料 整理与提升",
+    "type": "reasoning",
+    "description": "综合第三章：铁及其化合物、金属材料。不提前使用元素周期律或化学键。",
+    "mastery_criteria": [
+      "能综合判断铁的价态变化和金属材料的用途",
+      "能把铁的化学性质与合金的用途区分开"
+    ],
+    "diagnostic_question": {
+      "question": "下列说法正确的是？",
+      "answer": "铁能从硫酸铜溶液中置换出铜，钢是铁的合金"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.IN.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.IN.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h014",
+    "name": "实验活动2 铁及其化合物的性质",
+    "domain": "科学探究与化学实验",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第三章 铁 金属材料 实验活动2",
+    "type": "procedural",
+    "description": "实验活动 2 通过铁与盐溶液、酸的反应以及离子检验，认识铁及其化合物的性质。取用药品要少量，废液按实验室要求处理。",
+    "mastery_criteria": [
+      "能说出这个实验要认识的性质",
+      "能根据现象判断铁的价态或活动性"
+    ],
+    "diagnostic_question": {
+      "question": "实验活动「铁及其化合物的性质」主要要认识的是？",
+      "answer": "铁单质和铁的化合物有哪些典型反应"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.EX.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.IN.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h015",
+    "name": "原子结构与元素周期表",
+    "domain": "物质的组成与结构",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第四章 物质结构 元素周期律 4.1",
+    "type": "conceptual",
+    "description": "原子由原子核和核外电子构成。原子序数等于质子数。元素周期表按原子序数排列，横行是周期，纵列是族。",
+    "mastery_criteria": [
+      "能说出原子序数与质子数、核外电子数的关系",
+      "能在周期表里区分周期和族"
+    ],
+    "diagnostic_question": {
+      "question": "决定元素种类的是原子中的？",
+      "answer": "质子数"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.ST.05",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h016",
+    "name": "元素周期律",
+    "domain": "物质的组成与结构",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第四章 物质结构 元素周期律 4.2",
+    "type": "reasoning",
+    "description": "元素性质随原子序数递增呈周期性变化。同周期从左到右金属性减弱，同主族从上到下金属性增强。",
+    "mastery_criteria": [
+      "能说出同周期、同主族元素性质的递变方向",
+      "能用最外层电子数解释碱金属和卤素的相似性"
+    ],
+    "diagnostic_question": {
+      "question": "元素周期律说的是？",
+      "answer": "元素性质随原子序数递增而呈周期性变化"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.ST.05",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h017",
+    "name": "化学键",
+    "domain": "物质的组成与结构",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第四章 物质结构 元素周期律 4.3",
+    "type": "conceptual",
+    "description": "离子键是阴阳离子通过静电作用形成的，例如氯化钠。共价键是原子间通过共用电子对形成的，例如氢气、氯化氢。",
+    "mastery_criteria": [
+      "能区分离子键和共价键",
+      "能判断氯化钠和氯化氢里的化学键类型"
+    ],
+    "diagnostic_question": {
+      "question": "离子键通常存在于？",
+      "answer": "阴阳离子之间，例如氯化钠"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.ST.06",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h018",
+    "name": "整理与提升",
+    "domain": "物质的组成与结构",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第四章 物质结构 元素周期律 整理与提升",
+    "type": "reasoning",
+    "description": "综合第四章：原子结构与元素周期表、元素周期律、化学键。",
+    "mastery_criteria": [
+      "能把原子结构、周期律和化学键放到一起判断",
+      "能根据位置比较同周期或同主族元素的金属性"
+    ],
+    "diagnostic_question": {
+      "question": "原子序数增大时，元素性质的变化特点是？",
+      "answer": "呈周期性变化，而不是一直朝同一个方向变"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.ST.05",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.06",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h019",
+    "name": "实验活动3 同周期、同主族元素性质的递变",
+    "domain": "科学探究与化学实验",
+    "grade": 10,
+    "semester": "上",
+    "chapter": "必修一 第四章 物质结构 元素周期律 实验活动3",
+    "type": "procedural",
+    "description": "实验活动 3 比较同周期、同主族元素性质的递变，例如钠、镁、铝与水或酸反应的剧烈程度。钠只用一小块，用镊子取用。",
+    "mastery_criteria": [
+      "能说出这个实验要比较的递变",
+      "能根据反应剧烈程度判断金属性强弱，并注意取用钠的安全"
+    ],
+    "diagnostic_question": {
+      "question": "实验活动「同周期、同主族元素性质的递变」要观察的是？",
+      "answer": "同一周期或同一主族里，元素性质怎样依次变化"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B1.EX.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.05",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h020",
+    "name": "硫及其化合物",
+    "domain": "物质的性质与应用",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第五章 化工生产中的重要非金属元素 5.1",
+    "type": "conceptual",
+    "description": "硫及其氧化物、硫酸是化工生产里常见的含硫物质。二氧化硫能使品红褪色，浓硫酸有吸水性和脱水性。",
+    "mastery_criteria": [
+      "能说出硫、二氧化硫和硫酸的主要性质",
+      "能判断含硫物质之间的常见转化是不是氧化还原"
+    ],
+    "diagnostic_question": {
+      "question": "硫在空气中燃烧，主要产物是？",
+      "answer": "二氧化硫"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.IN.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h021",
+    "name": "氮及其化合物",
+    "domain": "物质的性质与应用",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第五章 化工生产中的重要非金属元素 5.2",
+    "type": "conceptual",
+    "description": "氮气化学性质不活泼。氨易溶于水显碱性，硝酸有酸性和氧化性，氮氧化物与酸雨、氮循环有关。",
+    "mastery_criteria": [
+      "能说出氮气、氨和硝酸的主要性质",
+      "能说明氮在自然界循环中的常见转化"
+    ],
+    "diagnostic_question": {
+      "question": "空气中含量最多、常温下很难直接参加反应的气体是？",
+      "answer": "氮气"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.IN.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h022",
+    "name": "无机非金属材料",
+    "domain": "物质的性质与应用",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第五章 化工生产中的重要非金属元素 5.3",
+    "type": "application",
+    "description": "硅是地壳中含量很高的元素。二氧化硅、硅酸盐是玻璃、陶瓷、水泥等无机非金属材料的主要成分。",
+    "mastery_criteria": [
+      "能说出二氧化硅和硅酸盐的主要用途",
+      "能把玻璃、陶瓷、水泥与硅及其化合物对应起来"
+    ],
+    "diagnostic_question": {
+      "question": "普通玻璃、水泥、陶瓷都属于？",
+      "answer": "无机非金属材料"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.IN.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h023",
+    "name": "整理与提升",
+    "domain": "物质的性质与应用",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第五章 化工生产中的重要非金属元素 整理与提升",
+    "type": "reasoning",
+    "description": "综合第五章：硫及其化合物、氮及其化合物、无机非金属材料。不提前使用反应热、有机物或绿色化学的新概念。",
+    "mastery_criteria": [
+      "能把硫、氮的典型性质和硅酸盐材料放在一起判断",
+      "能指出本章哪些转化有化合价变化"
+    ],
+    "diagnostic_question": {
+      "question": "下列物质属于无机非金属材料的是？",
+      "answer": "普通玻璃"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.IN.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.IN.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.IN.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h024",
+    "name": "实验活动4 用化学沉淀法去除粗盐中的杂质离子",
+    "domain": "科学探究与化学实验",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第五章 化工生产中的重要非金属元素 实验活动4",
+    "type": "procedural",
+    "description": "实验活动 4 用沉淀法除去粗盐溶液中的钙离子、镁离子和硫酸根离子。试剂加入顺序要保证过量钡离子也能被后面的碳酸根除去。",
+    "mastery_criteria": [
+      "能说出要除去的主要杂质离子和常用试剂",
+      "能说明碳酸钠要在氯化钡之后加入的原因"
+    ],
+    "diagnostic_question": {
+      "question": "用化学沉淀法处理粗盐溶液，主要想除去的杂质离子通常包括？",
+      "answer": "钙离子、镁离子和硫酸根离子"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.EX.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h025",
+    "name": "实验活动5 不同价态含硫物质的转化",
+    "domain": "科学探究与化学实验",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第五章 化工生产中的重要非金属元素 实验活动5",
+    "type": "procedural",
+    "description": "实验活动 5 通过氧化还原把不同价态的含硫物质互相转化，例如硫、硫化氢、二氧化硫、硫酸根之间的变化。",
+    "mastery_criteria": [
+      "能说出这个实验要观察的是不同价态含硫物质的转化",
+      "能根据化合价升降判断氧化剂和还原剂"
+    ],
+    "diagnostic_question": {
+      "question": "实验活动「不同价态含硫物质的转化」关注的是？",
+      "answer": "含硫物质怎样由一种化合价变成另一种化合价"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.EX.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.IN.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h026",
+    "name": "化学反应与能量变化",
+    "domain": "物质的化学变化",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第六章 化学反应与能量 6.1",
+    "type": "conceptual",
+    "description": "化学反应伴随着能量变化。放出热量的是放热反应，吸收热量的是吸热反应。原电池把化学能转化成电能。",
+    "mastery_criteria": [
+      "能区分放热反应和吸热反应",
+      "能说明原电池是把化学能转化成电能的装置"
+    ],
+    "diagnostic_question": {
+      "question": "木炭在空气中燃烧时，周围温度升高。这个反应属于？",
+      "answer": "放热反应"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.ST.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h027",
+    "name": "化学反应的速率与限度",
+    "domain": "物质的化学变化",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第六章 化学反应与能量 6.2",
+    "type": "reasoning",
+    "description": "化学反应有快有慢，也有一定限度。浓度、温度、催化剂和固体接触面积都会影响速率。可逆反应达到平衡时正逆反应仍在进行。",
+    "mastery_criteria": [
+      "能指出影响化学反应速率的常见因素",
+      "能说明可逆反应有限度、平衡是动态的"
+    ],
+    "diagnostic_question": {
+      "question": "把块状大理石改成粉末再与稀盐酸反应，反应通常会？",
+      "answer": "变快，因为接触面积增大"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.ST.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h028",
+    "name": "整理与提升",
+    "domain": "物质的化学变化",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第六章 化学反应与能量 整理与提升",
+    "type": "reasoning",
+    "description": "综合第六章：化学反应与能量变化、化学反应的速率与限度。不提前使用有机物或绿色化学的新概念。",
+    "mastery_criteria": [
+      "能把放热吸热、原电池和速率限度放在一起判断",
+      "能指出改变条件怎样影响速率"
+    ],
+    "diagnostic_question": {
+      "question": "下列变化主要把化学能转化成电能的是？",
+      "answer": "原电池放电"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.ST.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.ST.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h029",
+    "name": "实验活动6 化学能转化成电能",
+    "domain": "科学探究与化学实验",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第六章 化学反应与能量 实验活动6",
+    "type": "procedural",
+    "description": "实验活动 6 用金属、电解质溶液和导线组成原电池，观察电流或灯泡，认识化学能向电能的转化。",
+    "mastery_criteria": [
+      "能说出这个实验要把化学能转化成电能",
+      "能指出原电池需要活泼性不同的电极和电解质溶液"
+    ],
+    "diagnostic_question": {
+      "question": "实验活动「化学能转化成电能」要做成的装置是？",
+      "answer": "原电池"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.EX.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.ST.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h030",
+    "name": "实验活动7 化学反应速率的影响因素",
+    "domain": "科学探究与化学实验",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第六章 化学反应与能量 实验活动7",
+    "type": "procedural",
+    "description": "实验活动 7 通过对照实验观察浓度、温度、催化剂或接触面积对反应快慢的影响。每次最好只改变一个条件。",
+    "mastery_criteria": [
+      "能说出这个实验要探究的是影响速率的因素",
+      "能说明对照实验要控制变量"
+    ],
+    "diagnostic_question": {
+      "question": "实验活动「化学反应速率的影响因素」主要观察的是？",
+      "answer": "改变某个条件后，反应变快还是变慢"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.EX.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.ST.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h031",
+    "name": "认识有机化合物",
+    "domain": "物质的组成与结构",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第七章 有机化合物 7.1",
+    "type": "conceptual",
+    "description": "有机化合物主要含碳，并以碳骨架和官能团决定性质。同系物组成相差若干个 CH2，同分异构体分子式相同结构不同。",
+    "mastery_criteria": [
+      "能指出有机化合物以碳骨架和官能团为认识线索",
+      "能区分同系物和同分异构体"
+    ],
+    "diagnostic_question": {
+      "question": "有机化合物在组成上最突出的特点是？",
+      "answer": "一定含有碳元素"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.OR.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B1.ST.06",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h032",
+    "name": "乙烯与有机高分子材料",
+    "domain": "物质的性质与应用",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第七章 有机化合物 7.2",
+    "type": "conceptual",
+    "description": "乙烯分子含碳碳双键，能发生加成反应，也能加聚成聚乙烯。聚乙烯是常见的有机高分子材料。",
+    "mastery_criteria": [
+      "能说出乙烯含有碳碳双键、能加成和加聚",
+      "能说明聚乙烯由乙烯加聚得到"
+    ],
+    "diagnostic_question": {
+      "question": "乙烯分子中的特征结构是？",
+      "answer": "碳碳双键"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.OR.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h033",
+    "name": "乙醇与乙酸",
+    "domain": "物质的性质与应用",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第七章 有机化合物 7.3",
+    "type": "conceptual",
+    "description": "乙醇含羟基，能燃烧，能被氧化成乙醛或乙酸，也能与钠反应放出氢气。乙酸含羧基，有酸性，能与乙醇发生酯化。",
+    "mastery_criteria": [
+      "能说出乙醇和乙酸的主要官能团和典型性质",
+      "能说明乙醇氧化、乙酸酸性以及酯化的基本事实"
+    ],
+    "diagnostic_question": {
+      "question": "乙醇分子中决定其主要化学性质的官能团是？",
+      "answer": "羟基"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.OR.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h034",
+    "name": "基本营养物质",
+    "domain": "物质的性质与应用",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第七章 有机化合物 7.4",
+    "type": "application",
+    "description": "糖类、油脂和蛋白质是基本营养物质。淀粉、葡萄糖属于糖类，油脂水解得到脂肪酸和甘油，蛋白质水解得到氨基酸。",
+    "mastery_criteria": [
+      "能指出糖类、油脂、蛋白质三类基本营养物质",
+      "能说明它们水解或特征反应的基本事实"
+    ],
+    "diagnostic_question": {
+      "question": "淀粉、葡萄糖都属于？",
+      "answer": "糖类"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.OR.04",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h035",
+    "name": "整理与提升",
+    "domain": "物质的组成与结构",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第七章 有机化合物 整理与提升",
+    "type": "reasoning",
+    "description": "综合第七章：认识有机化合物、乙烯与有机高分子材料、乙醇与乙酸、基本营养物质。不提前使用选择性必修才出现的反应历程。",
+    "mastery_criteria": [
+      "能用碳骨架和官能团判断本章典型有机物",
+      "能把加成、加聚、氧化、酯化和营养物质水解对应起来"
+    ],
+    "diagnostic_question": {
+      "question": "下列物质属于有机高分子的是？",
+      "answer": "聚乙烯"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.OR.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.OR.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.OR.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h036",
+    "name": "实验活动8 搭建球棍模型认识有机化合物分子结构的特点",
+    "domain": "科学探究与化学实验",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第七章 有机化合物 实验活动8",
+    "type": "procedural",
+    "description": "实验活动 8 用球棍模型搭建甲烷、乙烯等分子，观察碳的四条键、双键的连接方式和分子的空间形状。",
+    "mastery_criteria": [
+      "能说出球棍模型用来表示原子和化学键",
+      "能根据模型指出甲烷是四面体、乙烯含双键"
+    ],
+    "diagnostic_question": {
+      "question": "球棍模型里，球通常表示？",
+      "answer": "原子"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.EX.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.OR.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h037",
+    "name": "实验活动9 乙醇、乙酸的主要性质",
+    "domain": "科学探究与化学实验",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第七章 有机化合物 实验活动9",
+    "type": "procedural",
+    "description": "实验活动 9 观察乙醇和乙酸的主要性质，例如乙醇燃烧、与钠反应，乙酸的酸性以及二者在浓硫酸加热下的酯化。",
+    "mastery_criteria": [
+      "能说出这个实验要验证乙醇和乙酸的主要性质",
+      "能指出酯化需要浓硫酸并注意加热安全"
+    ],
+    "diagnostic_question": {
+      "question": "实验活动「乙醇、乙酸的主要性质」要观察的对象是？",
+      "answer": "乙醇和乙酸各自的特征反应"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.EX.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.OR.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h038",
+    "name": "自然资源的开发利用",
+    "domain": "化学与社会·跨学科实践",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第八章 化学与可持续发展 8.1",
+    "type": "application",
+    "description": "煤、石油、天然气是重要化石能源，海水中有氯化钠等资源，金属矿物经冶炼得到金属。开发利用要节约并减少污染。",
+    "mastery_criteria": [
+      "能举例说明化石能源、海水和矿物的化学利用",
+      "能说明合理开发、节约使用的必要性"
+    ],
+    "diagnostic_question": {
+      "question": "煤、石油、天然气都属于？",
+      "answer": "化石能源"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.SO.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h039",
+    "name": "化学品的合理使用",
+    "domain": "化学与社会·跨学科实践",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第八章 化学与可持续发展 8.2",
+    "type": "application",
+    "description": "药品、肥料、农药等化学品能服务生产和生活，但要按量、按说明使用，避免滥用和残留危害。",
+    "mastery_criteria": [
+      "能举例说明药品和肥料的合理使用",
+      "能指出过量使用化学品可能带来的问题"
+    ],
+    "diagnostic_question": {
+      "question": "生病时按医嘱服用对症药物，这种做法属于？",
+      "answer": "化学品的合理使用"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.SO.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h040",
+    "name": "环境保护与绿色化学",
+    "domain": "化学与社会·跨学科实践",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第八章 化学与可持续发展 8.3",
+    "type": "application",
+    "description": "环境保护要求减少污染物排放。绿色化学强调从源头减少污染、提高原子利用率，而不是先污染再治理。",
+    "mastery_criteria": [
+      "能说出绿色化学的基本思想",
+      "能把环境保护与减少排放、合理利用资源联系起来"
+    ],
+    "diagnostic_question": {
+      "question": "绿色化学更强调的是？",
+      "answer": "从源头减少污染，让反应尽量把原子都用到产物里"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.SO.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
+  },
+  {
+    "id": "cnk_h041",
+    "name": "整理与提升",
+    "domain": "化学与社会·跨学科实践",
+    "grade": 11,
+    "semester": "上",
+    "chapter": "必修二 第八章 化学与可持续发展 整理与提升",
+    "type": "reasoning",
+    "description": "综合第八章：自然资源的开发利用、化学品的合理使用、环境保护与绿色化学。不引入未建的选择性必修概念。",
+    "mastery_criteria": [
+      "能把资源利用、化学品使用和绿色化学放在一起判断",
+      "能指出不符合可持续发展的做法"
+    ],
+    "diagnostic_question": {
+      "question": "石油既是能源，也是有机化工的原料。这种认识属于？",
+      "answer": "自然资源的开发利用"
+    },
+    "external": false,
+    "subject": "chemistry",
+    "standards": [
+      {
+        "id": "cks-hs-2017:B2.SO.01",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.SO.02",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      },
+      {
+        "id": "cks-hs-2017:B2.SO.03",
+        "confidence": "inferred",
+        "note": "公开转述，本图谱自编号，未逐页核对教育部 PDF。"
+      }
+    ]
   }
 ]
