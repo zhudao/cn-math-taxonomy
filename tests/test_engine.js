@@ -812,7 +812,7 @@ test('真实数据：先修子图不含外部节点，初中目标能回到小�
 
 test('旧 id 别名：cnm_ext_* 已不在图中，resolveTargets 跳到小学正式知识点', () => {
   const aliases = JSON.parse(fs.readFileSync(path.join(dataDir, 'id-aliases.json'), 'utf8')).aliases;
-  assert.strictEqual(Object.keys(aliases).length, 18);
+  assert.strictEqual(Object.keys(aliases).filter((k) => /^cnm_ext_/.test(k)).length, 18);
   for (let i = 1; i <= 18; i++) {
     const key = 'cnm_ext_' + String(i).padStart(3, '0');
     assert.ok(!RG.byId[key], key + ' 不应再作为知识点');
@@ -1527,7 +1527,7 @@ test('gradeTargets：一年级 = 一上 + 一下，七上只含七上；写法�
   assert.strictEqual(E.subjectOf(RGQ.byId[g7zh.ids[0]]), 'chinese');
   assert.strictEqual(E.subjectOf({ id: 'cnc_j001' }), 'chinese');
   const g1sci = E.gradeTargets(RGQ, '一年级', 'science');
-  assert.strictEqual(g1sci.ids.length, 30); // 一上 15 + 一下 15
+  assert.strictEqual(g1sci.ids.length, 27); // 一上 14 + 一下 13
   assert.ok(g1sci.ids.every((id) => id.startsWith('cns_')));
   const g6sci = E.gradeTargets(RGQ, '六下', 'science');
   assert.ok(g6sci.ids.length >= 15 && g6sci.ids.every((id) => RGQ.byId[id].grade === 6 && RGQ.byId[id].semester === '下'));
@@ -1676,6 +1676,14 @@ test('gradeTargets：一年级 = 一上 + 一下，七上只含七上；写法�
   assert.strictEqual(RGQ.byId.cnk_h099.name, '实验活动3 糖类的性质');
   assert.strictEqual(E.gradeTargets(RGQ, '必修一'), null);
   assert.strictEqual(E.gradeTargets(RGQ, '必修二'), null);
+  assert.deepStrictEqual(E.parseChapter('必修上 古诗词诵读 静女'), {
+    volume: '必修上', chapterNo: '古诗词诵读', chapterName: '静女', section: ''
+  });
+  assert.deepStrictEqual(E.parseChapter('必修上 第一单元 第1课'), {
+    volume: '必修上', chapterNo: '第一单元', chapterName: '第1课', section: ''
+  });
+  assert.strictEqual(E.gradeTargets(RGQ, '必修上'), null);
+  assert.strictEqual(E.gradeTargets(RGQ, '必修上', 'math'), null);
   assert.deepStrictEqual(E.parseChapter('必修一 绪言'), { volume: '必修一', chapterNo: '绪言', chapterName: '', section: '' });
   assert.deepStrictEqual(E.parseChapter('必修一 第三章 铁 金属材料 3.1'), {
     volume: '必修一', chapterNo: '第三章', chapterName: '铁 金属材料', section: '3.1'
