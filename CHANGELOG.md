@@ -1,5 +1,60 @@
 # 变更日志
 
+## 2026-11-23（每周学习周报，Worker，尚未部署）
+
+- 新增 `api/digest.js`：每周一 00:00 UTC（北京 08:00）cron 触发 `sendWeeklyDigests`，给 `mail_consent = 1` 且未退订的用户发一封服务邮件。内容只来自用户自己同步的数据：第一个孩子的名字、本周新增错题（`ts` 在近 7 天）、待复测数（`api/lib.js` 的 `computeDue`，与前端 `isDue` 同规则，老条目按 `ts` + 1 天）、已毕业总数、本周诊断次数（诊断记录的 `savedAt`）、进行中的期末补漏计划（计划日期 7 天内）。四项全 0 且没有进行中的计划就不发。主题「知识图谱周报：{孩子名}有 N 道错题待复测」，N 为 0 时「知识图谱周报：本周学习小结」；正文 HTML + 纯文本，一个「去错题本复测」按钮，页脚是服务邮件说明和退订链接，不提付费产品。
+- 防重复：`digest_log(user_id, week_key)`，`week_key` 为按 Asia/Shanghai 算的 ISO 周（如 2026-W48），发送前查、发送成功后写；单个用户失败只记日志，不中断整批。`mail.js` 的 `sendMail` 多一个可选的第四参数 `{ html, headers }`，验证码邮件不受影响。
+- 退订：`users.digest_token`（32 位随机十六进制，首次发送时生成）、`users.digest_opt_out`；`GET /digest/unsub?t=…` 置退订并返回中文确认页，token 不能用于登录 / 同步。邮件带 `List-Unsubscribe` 头。
+- 管理端点：`POST /admin/digest/run`，请求头 `X-Admin-Key` 等于 `ADMIN_KEY`（未设置一律 404），`?dry=1` 强制只算不发，返回候选人数、将发送数、跳过原因、每封的打码邮箱与各项计数。
+- `wrangler.toml`：`[triggers] crons = ["0 0 * * 1"]`，`DIGEST_DRY_RUN = "1"`（只有恰好是 `"0"` 才真发，其余一律只算不发、不写发送日志）。`schema.sql` 新增 `digest_log` 与 `users` 两列；已上线的库要先跑一次 `api/migrations/0001_digest.sql`（见 `wrangler.toml` 顶部的上线步骤）。
+- 新增 `tests/test_digest.js`，加入 CI 与 `npm test`。
+
+## 2026-11-23（错题到期复测）
+
+- 错题条目新增可选字段 `stage`（0–3）、`dueAt`（下次到期，毫秒）、`done`（已毕业），缺省按 stage 0、`ts` + 1 天、未毕业处理，老数据无需迁移。复测间隔 `INTERVALS_DAYS = [1, 3, 7, 15]`（`assets/wrongbook.js`；周报用的 `api/lib.js` 将存一份同值）。又答错：回到 stage 0、明天到期、清掉毕业标记；复测通过：stage + 1、按间隔排下一次，stage 3 通过即毕业；未过：stage 不变，明天再测。
+- `assets/wrongbook.js` 新增 `dueList(childId, now)`、`review(childId, qid, passed, now)`，以及首页用的 `dueTotal(now)`。`assets/sync.js` 的 `mergeWrongbook` 对同一 qid 的两份条目，复测进度单独取更靠前的一份（done 优先，其次 stage 高者，其次 dueAt 晚者），ts / count 等沿用原规则，旧副本不再冲掉复测进度。
+- 错题本页顶部新增「今日待复测」区（有到期题才显示）：选择题点选项即判对错，无选项的题先「显示答案」再自评「会了 / 还没会」；每条题目行带复测状态小字，已毕业的留在列表里。
+- 首页：已登录且本机合计有到期题时，三步流程之前显示一条「今日待复测 N 题 → 去复测」；未登录或没有到期题不显示、不占位。
+- 修：诊断演示模式结果页（及开始页、答题页）顶部多出的一行「null」——`childBar()` 在演示模式返回 null，被直接 `append`。
+- Service Worker 缓存版本 v37 → v38（缓存清单里的被改文件本来就在）。新增 `tests/test_wrongbook_review.js`，加入 CI 与 `npm test`；`tests/test_home.js` 补首页卡片用例。
+
+## 2026-11-22（高中思想政治）
+
+- 新增第 11 个学科「思想政治」，仅高中。统编版必修 1《中国特色社会主义》、必修 2《经济与社会》、必修 3《政治与法治》、必修 4《哲学与文化》，选择性必修 1《当代国际政治与经济》、2《法律与生活》、3《逻辑与思维》。编号 `cnz_h001`–`cnz_h153`，153 点，612 题，先修边 252 条（hard 168，soft 84，连到初中道德与法治 10 条）。课标 67 条 `czs-hs-2017:`，对象 `politics_senior`，2026-11-22 对照人教社转载课标 PDF 核对印刷页码，verbatim 仍为 false，无待核。目录说明见 `docs/politics-hs-catalog-20261122.md`。
+- 册次为 grade 10–16。首页学科胶囊和全站学科计数、诊断、知识图谱、错题本、期末补漏、知识点静态页都认这一学科。题库拆分新增 `data/questions/politics.json`。Service Worker 缓存版本 v36 → v37：思想政治题库按需加载，不预缓存。
+- 可复跑：`python3 scripts/pol_hs_build.py`，再 `python3 scripts/split_questions.py`。新增 `tests/test_pol_hs.js`，加入 CI 与 `npm test`。
+
+## 2026-11-22（登录体验：显眼入口、提示条、价值时刻小卡、会话滚动续期）
+
+- 页头账号入口（首页、诊断、档案、错题本、期末补漏）改成实心主色胶囊，字号比导航大一档，旁带小字「登录后换手机不丢」；已登录时胶囊显示邮箱，旁边是同步状态（已同步 · N 分钟前 / 同步中 / 同步未成功）。
+- 首页顶部加一条可关闭的轻提示条（不遮屏），只给未登录用户；关闭或登录后写 `cnmNudge.home`，不再出现。
+- 价值时刻小卡（仅未登录）：诊断结果区、错题本页（有错题时）顶部各一张，关闭分别写 `cnmNudge.diagnose` / `cnmNudge.wrongbook`；已登录不渲染，登录成功后若正显示则立即收起。位置由页面预留 `.cnm-nudge-slot[data-nudge]`，account.js 负责填充。
+- 会话改为滚动 30 天（`api/worker.js`）：authenticate 成功时剩余有效期不足 15 天就把 `expires_at` 顺延为 now+30 天并写库，剩余充足不写库，已过期仍拒绝。响应带 `X-Session-Expires`（CORS 已暴露），account.js 据此更新本机过期时间。`tests/test_api.js` 补续期用例。
+- 两个同意勾选（服务邮件默认勾、营销邮件默认不勾）未改动。Service Worker 缓存版本 v35 → v36。新增 `tests/test_login_ux.js`，加入 CI 与 `npm test`。
+
+## 2026-11-22（首页改版）
+
+- 首屏只讲一件事：主标题「先找到真正没学会的那一步」、「开始诊断」大按钮、演示入口；桌面端右侧放一张图谱示意（点击进演示）。原来罗列各学科覆盖的长段落收进学科胶囊的「展开」。
+- 数字条：知识点 / 先修关系 / 题数 / 学科，全站数字，打开页面时现算（`topics.json`、`dependencies.json` 的条数，题数取 `data/questions/index.json`，学科数取 topics 里的不同学科数），不再按学科分，也不再显示课标条目；首页不再请求 `cn-curriculum-standards.json` 和任何题目文件。
+- 学科入口收成一行胶囊（?subject= 切换，当前学科高亮），首页头部的学科切换行在首页隐藏。往下依次：本机盲区（有记录才显示）、三步、期末补漏计划、按年级进入、错题本，每段一句话。账号登录入口、统计埋点、PWA、页脚链接、SEO 标签均未改动。
+- `tests/test_home.js`、`tests/test_jmor_frontend.js` 随之更新；`scripts/screenshot.js` 的首页统计断言改为全站数字。
+
+## 2026-11-22（题库按学科拆分）
+
+- `data/questions.json`（12.5 MB，16,419 题）按学科拆成 `data/questions/<学科>.json` ×10 和 `index.json`（各科题数），由新增的 `scripts/split_questions.py` 生成并对账（总数、题 id 不丢不重、按知识点归属）。`questions.json` 保留为源数据，各 `*_build.py` 不变。
+- 诊断页、知识图谱只拉当前学科的文件；首页只读 `index.json` 取题数，不再拉任何题目。
+- Service Worker 缓存版本 v34 → v35：安装时预缓存 `index.json` 和 `math.json`，其余学科首次进入时缓存。`deploy-cf.sh` 打包拆分目录；整包 `questions.json` 作为过渡期兼容副本仍随站点发布，但页面和 sw 都不再使用。
+- 新增 `tests/test_questions_split.js`，加入 CI 与 `npm test`。
+
+## 2026-11-22（Phase 1：账号与云同步地基，免费灰度）
+
+- 新增 `api/`：Cloudflare Worker（`worker.js`）+ D1 表结构（`schema.sql`）+ `wrangler.toml`（name=math-pansgo-api，D1 binding DB）。只写代码和本地测试，未部署。接口：`POST /auth/request-code`（6 位验证码，10 分钟有效；同邮箱 60 秒冷却、每小时 5 次，同 IP 每小时 20 次；已注册与否响应一致）、`POST /auth/verify`（最多试 5 次，成功即作废；新用户记录服务邮件 / 营销邮件两类同意；发 30 天会话令牌）、`POST /auth/logout`、`GET /auth/me`、`GET /sync`、`PUT /sync/:dataset`（`base_updated_at` 不符返回 409 和云端现状）。验证码与会话令牌只存 SHA-256 哈希；CORS 白名单在 `ALLOWED_ORIGINS` 里配置，支持 `https://*.xxx.pages.dev`。发信走 `sendMail()` 抽象（Resend，`RESEND_API_KEY` 为 Worker secret）；`MAIL_DRY_RUN=1` 只写日志，仅调试用，生产必须是 `"0"`。
+- 前端：`assets/account.js`（页头「登录 / 账号」入口、邮箱验证码弹窗、会话管理）与 `assets/sync.js`（同步引擎）挂在首页、档案、错题本、期末补漏四个页面。本地优先，未登录时 sync.js 不挂钩子、不请求网络。同步 `cnmChildren.v1`、`cnmChildren.records.v1`、`cnmWrong.v1`、`cnmFinals.v1`：登录后拉云端 → 合并 → 写回本地 → 推上云；之后本地改动防抖 5 秒上传，409 重新拉取合并再传（最多 2 次）。合并是纯函数：档案按孩子 id、错题按 qid、诊断记录按记录 key、期末计划按整份较新者；删除靠上次同步的基线做三方推断，云端没有数据时不推断删除。
+- `assets/children.js` 编辑档案和设置学习进度时写 `updatedAt`；`finals/finals.js` 的 `savePlan` 写 `updatedAt`，供合并比较新旧。
+- 档案、错题本、期末补漏页的隐私说明改为「不登录不上传，登录（可选）后才同步」。
+- 新增 `tests/test_sync.js`（合并函数 + 两台设备的同步流程）、`tests/test_api.js`（验证码 / 限流 / CORS 纯逻辑，Worker 路由用 node:sqlite 内存库跑真实 `schema.sql`），已加入 CI 与 `npm test`。
+- Service Worker 缓存版本 v32 → v33，缓存清单加入 `assets/account.js`、`assets/sync.js`。
+
 ## 2026-11-22（诊断按学习进度出题，#56）
 
 - 诊断开始页新增「学习进度」：上学期 / 下学期 / 已学完全年。默认按月份预选（9–1 月上学期，2–7 月下学期，8 月已学完全年），手动改动存进当前孩子的档案（没选孩子时存本机设置），只在同一学期内有效，过了学期回到按月份的默认值。
