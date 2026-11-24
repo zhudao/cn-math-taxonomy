@@ -18,7 +18,9 @@ export const DATASETS = {
   children: 'cnmChildren.v1',
   records: 'cnmChildren.records.v1',
   wrongbook: 'cnmWrong.v1',
-  finals: 'cnmFinals.v1'
+  finals: 'cnmFinals.v1',
+  english: 'cnmEnglish.v1',
+  activity: 'cnmActivity.v1'
 };
 
 export function isDataset(name) {
@@ -161,6 +163,19 @@ export function isoWeekKey(ms) {
   const week1Monday = jan4 - ((new Date(jan4).getUTCDay() + 6) % 7) * DAY_MS;
   const week = 1 + Math.round((monday - week1Monday) / (7 * DAY_MS));
   return isoYear + '-W' + String(week).padStart(2, '0');
+}
+
+/* 学习打卡日期（cnmActivity.v1 的 ['YYYY-MM-DD', ...]，设备本地日期）的当前连续天数，以 now 的 Asia/Shanghai 日期为锚：
+ * 锚日打过卡从锚日往回数，否则从前一天往回数（周一早上发周报时周日打过卡仍算连续）。 */
+export function activityStreak(dates, now) {
+  const set = new Set((Array.isArray(dates) ? dates : []).filter((d) => typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d)));
+  const local = new Date(now + SHANGHAI_OFFSET_MS);
+  let day = Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate());
+  const str = (t) => new Date(t).toISOString().slice(0, 10);
+  if (!set.has(str(day))) day -= DAY_MS;
+  let n = 0;
+  while (set.has(str(day))) { n++; day -= DAY_MS; }
+  return n;
 }
 
 /* 邮箱打码：a***@qq.com。 */

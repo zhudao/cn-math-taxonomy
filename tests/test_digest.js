@@ -129,6 +129,17 @@ test('summarizeUser：没有孩子不带名字；四项全 0 且无计划没内�
   assert.strictEqual(digestSubject({ name: '小明', due: 0 }), '知识图谱周报：本周学习小结');
 });
 
+test('summarizeUser：多个孩子时不用第一个孩子的名字（待复测数是全部孩子合计）', async () => {
+  const { summarizeUser, digestSubject } = await load('digest.js');
+  const kids = { v: 1, current: 'c1', children: [{ id: 'c1', name: '小明' }, { id: 'c2', name: '小红' }] };
+  const s = summarizeUser({ children: kids, wrongbook: { c1: [wrong('a', MON - 5 * DAY)], c2: [wrong('b', MON - 5 * DAY)] } }, MON);
+  assert.strictEqual(s.due, 2);
+  assert.strictEqual(s.name, '');
+  assert.strictEqual(digestSubject(s), '知识图谱周报：有 2 道错题待复测');
+  const one = summarizeUser({ children: profile('小明'), wrongbook: { c1: [wrong('a', MON - 5 * DAY)] } }, MON);
+  assert.strictEqual(one.name, '小明');
+});
+
 test('renderDigest：正文双份、数字齐全、按钮与退订链接、转义、不提付费', async () => {
   const { renderDigest } = await load('digest.js');
   const url = 'https://api.math.pansgo.com/digest/unsub?t=' + 'a'.repeat(32);
@@ -276,6 +287,69 @@ worldTest('只有期末计划也发；邮件主题、正文数字、退订头', 
   assert.ok(w.mails[0].text.includes('11 月 28 日'));
 });
 
+test('activityStreak：以周报发送日（Asia/Shanghai）为锚，当天没打卡从前一天数，断一天归零，跨月跨年连得上', async () => {
+  const { activityStreak } = await load('lib.js');
+  const monMorning = Date.parse('2026-11-23T00:00:00Z');
+  assert.strictEqual(activityStreak(['2026-11-20', '2026-11-21', '2026-11-22'], monMorning), 3, '周日打过卡，周一早上仍连着');
+  assert.strictEqual(activityStreak(['2026-11-21', '2026-11-22', '2026-11-23'], monMorning), 3, '锚日当天打过卡也算');
+  assert.strictEqual(activityStreak(['2026-11-20', '2026-11-21'], monMorning), 0, '周日没打卡 → 断了');
+  assert.strictEqual(activityStreak(['2026-11-19', '2026-11-22'], monMorning), 1);
+  assert.strictEqual(activityStreak(['2026-10-31', '2026-11-01', '2026-11-02'], Date.parse('2026-11-02T10:00:00Z')), 3);
+  assert.strictEqual(activityStreak(['2026-12-31', '2027-01-01'], Date.parse('2027-01-01T01:00:00Z')), 2);
+  assert.strictEqual(activityStreak(['2026-11-22'], Date.parse('2026-11-22T17:00:00Z')), 1, 'UTC 周日 17 点北京已是周一 01 点，锚日是周一；周日打的卡算「前一天」');
+  assert.strictEqual(activityStreak(null, monMorning), 0);
+  assert.strictEqual(activityStreak(['bad', 5, null], monMorning), 0);
+});
+
+test('summarizeUser：英语行——本周完成新句数、累计、当前连续天数；只有英语数据也有内容；学完很久且没在打卡不算有内容', async () => {
+  const { summarizeUser } = await load('digest.js');
+  const english = { c1: { done: { 1: { at: MON - 2 * DAY }, 2: { at: MON - 1 * DAY }, 3: { at: MON - 10 * DAY } }, reviews: {} }, guest: { done: { 1: { at: MON - 3 * DAY } }, reviews: {} } };
+  const activity = { c1: ['2026-11-21', '2026-11-22'], guest: ['2026-11-10'] };
+  const s = summarizeUser({ english, activity }, MON);
+  assert.deepStrictEqual({ ...s.english }, { week: 3, total: 4, streak: 2 });
+  assert.strictEqual(s.hasContent, true);
+  const stale = summarizeUser({ english: { c1: { done: { 1: { at: MON - 60 * DAY } } } }, activity: { c1: ['2026-09-01'] } }, MON);
+  assert.deepStrictEqual({ ...stale.english }, { week: 0, total: 1, streak: 0 });
+  assert.strictEqual(stale.hasContent, false);
+  assert.strictEqual(summarizeUser({}, MON).english, null);
+  assert.strictEqual(summarizeUser({ english: 5, activity: 'x' }, MON).english, null);
+  assert.strictEqual(summarizeUser({ english: { c1: { done: 7 } } }, MON).english, null);
+});
+
+test('renderDigest：有英语数据多一行，没有就和第一批一模一样', async () => {
+  const { renderDigest } = await load('digest.js');
+  const url = 'https://api.math.pansgo.com/digest/unsub?t=' + 'a'.repeat(32);
+  const base = { name: '', newWrong: 0, due: 0, graduated: 0, diagnoses: 1, finals: null };
+  const withEn = renderDigest(Object.assign({}, base, { english: { week: 4, total: 9, streak: 5 } }), url);
+  assert.ok(withEn.text.includes('- 英语每日一句：本周学了 4 句，连续学习 5 天'));
+  assert.ok(withEn.html.includes('英语每日一句') && withEn.html.includes('本周学了 4 句，连续学习 5 天'));
+  assert.ok(!renderDigest(base, url).text.includes('英语'));
+  assert.ok(!renderDigest(Object.assign({}, base, { english: null }), url).text.includes('英语'));
+});
+
+worldTest('只有英语每日一句的用户也发：不被当没内容跳过，正文含英语行；没英语数据的人正文不含', async (w) => {
+  addUser(w.d1, 'en-only@qq.com', {}, {
+    english: { g: { done: { 1: { at: MON - 2 * DAY, checks: {} }, 2: { at: MON - DAY, checks: {} } }, reviews: {} } },
+    activity: { g: ['2026-11-21', '2026-11-22'] }
+  });
+  addUser(w.d1, 'rich@qq.com', {}, RICH());
+  const r = await w.run();
+  assert.strictEqual(r.sent, 2);
+  assert.strictEqual(r.skipped.no_content, 0);
+  const en = w.mails.find((m) => m.to === 'en-only@qq.com');
+  assert.ok(en.text.includes('英语每日一句：本周学了 2 句，连续学习 2 天'), en.text);
+  assert.ok(en.extra.html.includes('英语每日一句'));
+  assert.strictEqual(en.subject, '知识图谱周报：本周学习小结');
+  assert.ok(!w.mails.find((m) => m.to === 'rich@qq.com').text.includes('英语'));
+});
+
+worldTest('英语数据学完很久且没在打卡的用户仍按没内容跳过', async (w) => {
+  addUser(w.d1, 'old-en@qq.com', {}, { english: { g: { done: { 1: { at: MON - 90 * DAY } }, reviews: {} } }, activity: { g: ['2026-08-01'] } });
+  const r = await w.run();
+  assert.strictEqual(r.skipped.no_content, 1);
+  assert.strictEqual(r.sent, 0);
+});
+
 worldTest('待复测数含老条目规则；主题带孩子名与待复测数；正文与退订链接', async (w) => {
   addUser(w.d1, 'p@qq.com', {}, RICH());
   const r = await w.run();
@@ -363,6 +437,26 @@ worldTest('单个用户发送失败不中断整批，失败的不写日志，下
   w.failFor.clear();
   const again = await w.run();
   assert.strictEqual(again.sent, 1);
+  assert.strictEqual(w.mails[w.mails.length - 1].to, 'bad@qq.com');
+});
+
+worldTest('并发重复触发（cron 与手动同时跑）：同一用户同一周只发一封，发送失败会释放占位以便补发', async (w) => {
+  addUser(w.d1, 'a@qq.com', {}, RICH());
+  addUser(w.d1, 'b@qq.com', {}, RICH());
+  const [r1, r2] = await Promise.all([w.run(), w.run()]);
+  assert.deepStrictEqual(w.mails.map((m) => m.to).sort(), ['a@qq.com', 'b@qq.com'], '每人一封，不重复');
+  assert.strictEqual(r1.sent + r2.sent, 2);
+  assert.strictEqual(r1.skipped.already_sent + r2.skipped.already_sent >= 2, true, '输的一方按已发过跳过');
+  assert.deepStrictEqual(w.logRows().map((x) => x.user_id), [1, 2]);
+
+  addUser(w.d1, 'bad@qq.com', {}, RICH());
+  w.failFor.add('bad@qq.com');
+  const orig = console.error;
+  console.error = () => {};
+  try { await w.run(); } finally { console.error = orig; }
+  assert.deepStrictEqual(w.logRows().map((x) => x.user_id), [1, 2], '失败的占位已释放');
+  w.failFor.clear();
+  assert.strictEqual((await w.run()).sent, 1);
   assert.strictEqual(w.mails[w.mails.length - 1].to, 'bad@qq.com');
 });
 

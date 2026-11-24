@@ -1,7 +1,7 @@
 /* 每周学习周报：周一 08:00（北京）由 cron 触发，也可用 POST /admin/digest/run 手动 / dry-run。
- * 收件人：mail_consent = 1 且 digest_opt_out = 0。内容只来自用户自己同步上来的四份数据，没内容不发。
+ * 收件人：mail_consent = 1 且 digest_opt_out = 0。内容只来自用户自己同步上来的数据（档案、诊断、错题本、期末计划、英语每日一句、学习打卡），没内容不发。
  * DIGEST_DRY_RUN 不是 "0" 时一律只算不发、不写 digest_log。 */
-import { DAY_MS, WRONGBOOK_URL, DIGEST_UNSUB_BASE, computeDue, isoWeekKey, maskEmail, generateDigestToken } from './lib.js';
+import { DAY_MS, WRONGBOOK_URL, DIGEST_UNSUB_BASE, computeDue, isoWeekKey, maskEmail, generateDigestToken, activityStreak } from './lib.js';
 
 const PAGE_SIZE = 50;
 const WEEK_MS = 7 * DAY_MS;
@@ -48,11 +48,40 @@ function activeFinals(plan, now) {
   return { endMonth: endDate.getUTCMonth() + 1, endDay: endDate.getUTCDate() };
 }
 
-/* datasets: { children, records, wrongbook, finals } 解析后的数据（缺的是 null）。 */
+/* 英语每日一句（cnmEnglish.v1：{桶: {done: {day: {at}}}}）：近 7 天完成的新句数（与前端 weekStats 同口径）、累计句数。 */
+function summarizeEnglish(english, now) {
+  let week = 0;
+  let total = 0;
+  if (isObj(english)) {
+    Object.keys(english).forEach((bucket) => {
+      const done = isObj(english[bucket]) ? english[bucket].done : null;
+      if (!isObj(done)) return;
+      Object.keys(done).forEach((day) => {
+        if (!isObj(done[day])) return;
+        total++;
+        const at = toMs(done[day].at);
+        if (at > now - WEEK_MS && at <= now) week++;
+      });
+    });
+  }
+  return { week, total };
+}
+
+/* 学习打卡（cnmActivity.v1：{桶: [日期]}）：各孩子 / 游客桶里最长的当前连续段。 */
+function summarizeStreak(activity, now) {
+  let best = 0;
+  if (isObj(activity)) {
+    Object.keys(activity).forEach((bucket) => { best = Math.max(best, activityStreak(activity[bucket], now)); });
+  }
+  return best;
+}
+
+/* datasets: { children, records, wrongbook, finals, english, activity } 解析后的数据（缺的是 null）。 */
 export function summarizeUser(datasets, now) {
   const kids = isObj(datasets.children) && Array.isArray(datasets.children.children) ? datasets.children.children : [];
-  const first = kids.find((c) => isObj(c) && cleanName(c.name));
-  const name = first ? cleanName(first.name) : '';
+  const named = kids.filter((c) => isObj(c) && cleanName(c.name));
+  /* 待复测等数字是全部孩子合计，多个孩子时不挂某一个孩子的名字。 */
+  const name = named.length === 1 && kids.length === 1 ? cleanName(named[0].name) : '';
 
   let newWrong = 0;
   let due = 0;
@@ -86,8 +115,13 @@ export function summarizeUser(datasets, now) {
   }
 
   const finals = activeFinals(datasets.finals, now);
-  const hasContent = newWrong > 0 || due > 0 || graduated > 0 || diagnoses > 0 || !!finals;
-  return { name, newWrong, due, graduated, diagnoses, finals, hasContent };
+  /* 有英语数据才加一行；但只有本周学过或还在连续打卡才算「有内容」，免得学完很久的账号每周都收到空小结。 */
+  const eng = summarizeEnglish(datasets.english, now);
+  const streak = summarizeStreak(datasets.activity, now);
+  const english = eng.total > 0 ? { week: eng.week, total: eng.total, streak } : null;
+  const englishFresh = !!english && (eng.week > 0 || streak > 0);
+  const hasContent = newWrong > 0 || due > 0 || graduated > 0 || diagnoses > 0 || !!finals || englishFresh;
+  return { name, newWrong, due, graduated, diagnoses, finals, english, hasContent };
 }
 
 export function digestSubject(summary) {
@@ -108,6 +142,9 @@ function lines(summary) {
     ['已毕业的错题', summary.graduated + ' 道'],
     ['本周诊断', summary.diagnoses + ' 次']
   ];
+  if (summary.english) {
+    out.push(['英语每日一句', '本周学了 ' + summary.english.week + ' 句，连续学习 ' + summary.english.streak + ' 天']);
+  }
   return out;
 }
 
@@ -157,6 +194,14 @@ async function ensureToken(env, user) {
   return row.digest_token;
 }
 
+async function releaseClaim(env, userId, weekKey) {
+  try {
+    await env.DB.prepare('DELETE FROM digest_log WHERE user_id = ? AND week_key = ?').bind(userId, weekKey).run();
+  } catch (e) {
+    console.error('digest: release claim failed for user ' + userId + ': ' + (e && e.message));
+  }
+}
+
 /* opts: { dryRun, now, sendMail }。dryRun 缺省看 env.DIGEST_DRY_RUN，不是 "0" 一律当 dry-run。
  * 返回 JSON 汇总，单个用户失败只记日志、不中断整批。 */
 export async function sendWeeklyDigests(env, opts) {
@@ -197,14 +242,23 @@ export async function sendWeeklyDigests(env, opts) {
 
     for (const user of pending) {
       let item = null;
+      let claimed = false;
       try {
         const summary = summarizeUser(datasets.get(user.id) || {}, now);
         if (!summary.hasContent) { result.skipped.no_content++; continue; }
+        /* 先占位再发：并发的另一次运行（cron 与手动同时跑）抢不到占位就跳过，同周不会重复发。
+         * 发送失败会释放占位以便补发；进程在占位后、发送前死掉则本周漏发（宁可漏一封，不重复发）。 */
+        if (!dryRun) {
+          const claim = await env.DB.prepare('INSERT OR IGNORE INTO digest_log (user_id, week_key, sent_at) VALUES (?, ?, ?)').bind(user.id, weekKey, now).run();
+          if (!claim.meta || claim.meta.changes < 1) { result.skipped.already_sent++; continue; }
+          claimed = true;
+        }
         result.will_send++;
         item = {
           to: maskEmail(user.email), new_wrong: summary.newWrong, due: summary.due, graduated: summary.graduated,
           diagnoses: summary.diagnoses, finals: !!summary.finals, status: dryRun ? 'dry_run' : 'pending'
         };
+        if (summary.english) { item.english_week = summary.english.week; item.english_streak = summary.english.streak; }
         result.items.push(item);
         if (dryRun) continue;
 
@@ -213,18 +267,20 @@ export async function sendWeeklyDigests(env, opts) {
         const sent = await o.sendMail(user.email, digestSubject(summary), body.text, {
           html: body.html, headers: { 'List-Unsubscribe': '<' + unsubUrl + '>' }
         });
-        if (sent && sent.dryRun) { item.status = 'mail_dry_run'; continue; }
+        if (sent && sent.dryRun) {
+          item.status = 'mail_dry_run';
+          claimed = false;
+          await releaseClaim(env, user.id, weekKey);
+          continue;
+        }
+        claimed = false;
         item.status = 'sent';
         result.sent++;
-        try {
-          await env.DB.prepare('INSERT OR IGNORE INTO digest_log (user_id, week_key, sent_at) VALUES (?, ?, ?)').bind(user.id, weekKey, now).run();
-        } catch (e) {
-          console.error('digest: log write failed for user ' + user.id + ': ' + (e && e.message));
-        }
       } catch (e) {
         console.error('digest: user ' + user.id + ' failed: ' + (e && e.message));
         result.failed++;
         if (item) item.status = 'failed';
+        if (claimed) await releaseClaim(env, user.id, weekKey);
       }
     }
   }
